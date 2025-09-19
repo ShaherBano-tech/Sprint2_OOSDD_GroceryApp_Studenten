@@ -4,10 +4,15 @@ on:
   push:
     branches:
       - main
+      - develop
+      - feature-UC5
+      - feature-UC6
+      - hotfix-UC4-typo      
       - infra/runner-toevoegen
   pull_request:
     branches:
       - main
+      - develop
  
 jobs:
   test:
