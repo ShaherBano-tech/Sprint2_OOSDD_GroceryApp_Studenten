@@ -65,7 +65,10 @@ namespace Grocery.App.ViewModels
         public void AddProduct(Product product)
         {
             if (product == null || product.Id <= 0) return; 
-            var newItem = new GroceryListItem(0, GroceryList.Id, product.Id, 1);    
+            var newItem = new GroceryListItem(0, GroceryList.Id, product.Id, 1)
+            { 
+                Product = product
+            };    
             _groceryListItemsService.Add(newItem);  
             product.Stock -= 1; 
             _productService.Update(product);    
