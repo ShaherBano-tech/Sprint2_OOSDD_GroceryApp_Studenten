@@ -34,6 +34,16 @@ namespace Grocery.App.ViewModels
 
         private void GetAvailableProducts()
         {
+            AvailableProducts.Clear();
+            var allProducts = _productService.GetAll();
+            foreach (var product in allProducts)
+            {
+                var existsInGroceryList = MyGroceryListItems.Any(gli => gli.ProductId == product.Id);
+                if (!existsInGroceryList && product.Stock > 0)
+                {
+                    AvailableProducts.Add(product);
+                }
+            }
             //Maak de lijst AvailableProducts leeg
             //Haal de lijst met producten op
             //Controleer of het product al op de boodschappenlijst staat, zo niet zet het in de AvailableProducts lijst
